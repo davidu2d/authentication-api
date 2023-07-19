@@ -1,0 +1,82 @@
+### GetToken
+@tenantId = BRB
+@grantType = password
+
+POST http://localhost:3000/api/auth/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZGF2aWQuamVyZW1pYXNAcGxhdGZvcm1idWlsZGVyLmlvOjQxNTc4Mg==
+
+tenantId={{tenantId}}&grantType={{grantType}}
+
+
+
+### Created
+POST http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+    "name": "David Nycolas",
+    "username": "david.nyc@platformbuilder.io",
+    "password": "123456@Abc",
+    "tenantId": "BRB",
+    "profile": "CORRESPONDENTE_BANCARIO"
+}
+
+
+### FindOne
+GET http://localhost:3000/api/user/1
+
+
+### FindOneByUsername
+GET http://localhost:3000/api/user/username/david.jeremias@platformbuilder.io
+
+
+### FindAll
+GET http://localhost:3000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhdmlkLmplcmVtaWFzQHBsYXRmb3JtYnVpbGRlci5pbyIsInN1YiI6MSwiaWF0IjoxNjQxNDk1MDAzLCJleHAiOjE2NDE0OTUzMDN9.4WC5-5uuwaqHMRI4b3p1PFCTNntdnLRFT7BIrOaldLY
+
+### FindAllPageable
+GET http://localhost:3000/api/user/pageable?offset=0&limit=10
+
+
+
+PATCH http://localhost:3000/api/user/1
+Content-Type: application/json
+
+{
+    "username": "david.jeremias.souza@platformbuilder.io"
+}
+
+
+### Delete
+DELETE http://localhost:3000/api/user/1
+
+
+### PROFILE
+
+### Created
+POST http://localhost:3000/api/profile
+Content-Type: application/json
+
+{
+    "name": "CORRESPONDENTE_BANCARIO"
+}
+
+### FindAll
+GET http://localhost:3000/api/profile
+
+
+### CACHE
+
+### Created
+POST http://localhost:3000/api/redis
+Content-Type: application/json
+
+{
+    "key": "nome",
+    "value": "David Jeremias"
+}
+
+
+### Find
+GET http://localhost:3000/api/redis/nome

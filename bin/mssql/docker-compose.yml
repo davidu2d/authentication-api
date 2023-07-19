@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  sql.data:
+    container_name: dev_sql
+    image: sql-server:2019-latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    expose:
+      - 1433
+    ports:
+      - '1433:1433'
+    volumes:
+      - systemdbs:/var/opt/mssql
+      - userdbs:/var/opt/sqlserver
+    networks:
+      - mssql
+
+volumes:
+  systemdbs:
+  userdbs:
+networks:
+  mssql:
+    driver: bridge
